@@ -1,127 +1,146 @@
-import { type CSSProperties } from 'react';
-import { ArrowUpRight, ChevronRight, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowUpRight, Check, Copy, Gamepad2, Radio, Sparkles } from 'lucide-react';
 import { SiFacebook, SiInstagram, SiTiktok } from 'react-icons/si';
 
-function Home() {
-  const links = [
-    {
-      name: 'Facebook',
-      handle: 'marco.valentino.caga.anan',
-      href: 'https://facebook.com/marco.valentino.caga.anan',
-      icon: SiFacebook,
-      detail: 'Say hello',
-    },
-    {
-      name: 'TikTok',
-      handle: '@mavrkz0',
-      href: 'https://www.tiktok.com/@mavrkz0',
-      icon: SiTiktok,
-      detail: 'Watch along',
-    },
-    {
-      name: 'Instagram',
-      handle: '@mar.codes',
-      href: 'https://www.instagram.com/mar.codes',
-      icon: SiInstagram,
-      detail: 'See the latest',
-    },
-  ];
+type SocialLink = {
+  name: string;
+  handle: string;
+  href: string;
+  accent: string;
+  icon: typeof SiFacebook;
+  note: string;
+};
+
+const links: SocialLink[] = [
+  {
+    name: 'Facebook',
+    handle: 'marco.valentino.caga.anan',
+    href: 'https://facebook.com/marco.valentino.caga.anan',
+    accent: 'blue',
+    icon: SiFacebook,
+    note: 'Connect',
+  },
+  {
+    name: 'TikTok',
+    handle: '@mavrkz0',
+    href: 'https://www.tiktok.com/@mavrkz0',
+    accent: 'pink',
+    icon: SiTiktok,
+    note: 'Watch',
+  },
+  {
+    name: 'Instagram',
+    handle: '@mar.codes',
+    href: 'https://www.instagram.com/mar.codes',
+    accent: 'orange',
+    icon: SiInstagram,
+    note: 'Follow',
+  },
+];
+
+function App() {
+  const [copied, setCopied] = useState(false);
+
+  const copyHubLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setCopied(false);
+    }
+  };
 
   return (
     <main className="hub-shell">
-      <div className="hub-noise" aria-hidden="true" />
-      <div className="hub-orbit orbit-one" aria-hidden="true" />
-      <div className="hub-orbit orbit-two" aria-hidden="true" />
+      <div className="background-grid" aria-hidden="true" />
+      <div className="ambient-glow glow-cyan" aria-hidden="true" />
+      <div className="ambient-glow glow-pink" aria-hidden="true" />
+      <div className="scanlines" aria-hidden="true" />
 
-      <header className="hub-header">
-        <a className="monogram" href="/" aria-label="Marco Valentino Caga-anan home" data-testid="link-home">
-          MVC<span>.</span>
+      <header className="topbar">
+        <a className="brand" href="/" aria-label="MVC home">
+          <span className="brand-bracket">[</span>MVC<span className="brand-dot">:</span><span className="brand-bracket">]</span>
         </a>
-        <p className="header-note">personal links / 01</p>
+        <div className="topbar-status"><span className="status-led" /> SIGNAL ONLINE</div>
+        <button className="share-button" type="button" onClick={copyHubLink}>
+          {copied ? <Check size={15} /> : <Copy size={15} />}
+          {copied ? 'COPIED' : 'SHARE HUB'}
+        </button>
       </header>
 
-      <section className="hub-grid" aria-labelledby="profile-heading">
-        <div className="profile-column">
-          <div className="image-stage">
-            <div className="image-rail image-rail-top" aria-hidden="true">
-              <span>IN FRAME</span><span>•</span><span>PERSONAL EDITION</span>
-            </div>
-            <div className="portrait-frame">
-              <img
-                src="/marco-profile.jpeg"
-                alt="Marco Valentino Caga-anan by an airplane window"
-                className="portrait"
-                data-testid="img-profile"
-              />
-              <div className="portrait-wash" aria-hidden="true" />
-            </div>
-            <div className="image-rail image-rail-bottom" aria-hidden="true">
-              <span>WINDOW SEAT</span><span className="rail-line" /><span>01 / 01</span>
-            </div>
-          </div>
-
-          <div className="profile-copy">
-            <p className="eyebrow">A small corner of the internet</p>
-            <h1 id="profile-heading" data-testid="text-profile-name">
-              Marco
-              <br />
-              <em>Valentino</em>
-              <br />
-              <span className="surname">Caga-anan</span>
-            </h1>
-            <p className="profile-prompt">
-              Find me where I’m
-              <br className="mobile-break" /> already hanging out.
-            </p>
-          </div>
+      <section className="hero" aria-labelledby="profile-heading">
+        <div className="hero-side hero-side-left" aria-hidden="true">
+          <span>RGB_LINK // 001</span>
+          <span className="vertical-rule" />
+          <span>PHILIPPINES</span>
         </div>
 
-        <div className="links-column">
-          <div className="links-intro">
-            <p className="section-kicker">Open tabs</p>
-            <p className="links-count">03 places to find me</p>
+        <div className="profile-card">
+          <div className="card-topline">
+            <span><Radio size={13} /> PLAYER PROFILE</span>
+            <span>V. 01.0</span>
+          </div>
+          <div className="portrait-wrap">
+            <div className="portrait-ring portrait-ring-one" />
+            <div className="portrait-ring portrait-ring-two" />
+            <div className="portrait-frame">
+              <img src="/marco-profile.jpeg" alt="Marco Valentino Caga-anan by an airplane window" />
+              <div className="portrait-glitch" aria-hidden="true" />
+            </div>
+            <div className="level-badge"><span>LVL</span><strong>01</strong></div>
+          </div>
+          <div className="profile-label"><span>PLAYER_001</span><span className="label-line" /><span>ONLINE</span></div>
+          <h1 id="profile-heading">
+            <span>Marco</span>
+            <span className="name-accent">Valentino</span>
+            <span>Caga-anan</span>
+          </h1>
+          <p className="profile-description"><Sparkles size={14} /> Digital presence unlocked. Find all my current socials below.</p>
+        </div>
+
+        <div className="links-panel">
+          <div className="panel-heading">
+            <div>
+              <p className="eyebrow">SELECT A CHANNEL</p>
+              <h2>Drop in.</h2>
+            </div>
+            <Gamepad2 className="heading-icon" size={42} strokeWidth={1.2} aria-hidden="true" />
           </div>
 
           <nav className="social-links" aria-label="Marco's social profiles">
-            {links.map(({ name, handle, href, icon: Icon, detail }, index) => (
-              <a
-                className="social-link"
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                key={name}
-                data-testid={`link-social-${name.toLowerCase()}`}
-                style={{ '--link-index': index } as CSSProperties}
-              >
-                <span className="link-index">0{index + 1}</span>
-                <span className="social-icon" aria-hidden="true"><Icon /></span>
-                <span className="social-copy">
-                  <strong>{name}</strong>
-                  <span>{handle}</span>
-                </span>
-                <span className="social-detail">{detail}</span>
-                <ArrowUpRight className="link-arrow" aria-hidden="true" />
+            {links.map(({ name, handle, href, accent, icon: Icon, note }, index) => (
+              <a className={`social-link social-link-${accent}`} href={href} target="_blank" rel="noreferrer" key={name}>
+                <span className="social-index">0{index + 1}</span>
+                <span className="social-icon"><Icon size={22} /></span>
+                <span className="social-copy"><strong>{name}</strong><span>{handle}</span></span>
+                <span className="social-note">{note}</span>
+                <ArrowUpRight className="social-arrow" size={19} aria-hidden="true" />
               </a>
             ))}
           </nav>
 
-          <div className="links-footer">
-            <span className="footer-rule" aria-hidden="true" />
-            <p>Thanks for stopping by.</p>
-            <ExternalLink className="footer-icon" aria-hidden="true" />
+          <div className="panel-footer">
+            <span>03 CHANNELS ACTIVE</span>
+            <span className="equalizer" aria-hidden="true"><i /><i /><i /><i /><i /></span>
+            <span>GG, SEE YOU THERE</span>
           </div>
+        </div>
+
+        <div className="hero-side hero-side-right" aria-hidden="true">
+          <span>NO LAG</span>
+          <span className="right-cross">+</span>
+          <span>STAY CONNECTED</span>
         </div>
       </section>
 
-      <footer className="hub-footer">
-        <span>MARCO VALENTINO CAGA-ANAN</span>
-        <span className="footer-center"><i aria-hidden="true" /> curated with care</span>
-        <a href="#profile-heading" data-testid="link-back-top">back to top <ChevronRight aria-hidden="true" /></a>
+      <footer className="footer">
+        <span>© {new Date().getFullYear()} MARCO VALENTINO CAGA-ANAN</span>
+        <span className="footer-center">SOCIAL LINKER HUB <span>///</span> PUBLIC ACCESS</span>
+        <span>MADE FOR THE NEXT LEVEL <span className="footer-spark">✦</span></span>
       </footer>
     </main>
   );
 }
 
-export default function App() {
-  return <Home />;
-}
+export default App;
