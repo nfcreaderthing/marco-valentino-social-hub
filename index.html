@@ -1,23 +1,54 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#07070c" />
-    <meta name="description" content="Marco Valentino Caga-anan — all social links in one neon hub." />
-    <meta property="og:title" content="MVC // Social Linker Hub" />
-    <meta property="og:description" content="Connect with Marco Valentino Caga-anan." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/marco-profile.jpeg" />
-    <meta property="og:image:alt" content="Marco Valentino Caga-anan by an airplane window" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>MVC // Social Linker Hub</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07070c" />
+  <meta name="description" content="Marco Valentino Caga-anan — all social links in one neon hub." />
+  <meta property="og:title" content="MVC // Social Linker Hub" />
+  <meta property="og:description" content="Connect with Marco Valentino Caga-anan." />
+  <meta property="og:type" content="website" />
+  <title>MVC // Social Linker Hub</title>
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="hub-shell">
+    <div class="background-grid" aria-hidden="true"></div><div class="ambient-glow glow-cyan" aria-hidden="true"></div><div class="ambient-glow glow-pink" aria-hidden="true"></div><div class="scanlines" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="MVC home"><span class="brand-bracket">[</span>MVC<span class="brand-dot">:</span><span class="brand-bracket">]</span></a>
+      <div class="topbar-status"><span class="status-led"></span> SIGNAL ONLINE</div>
+      <button class="share-button" type="button" id="share-button"><span id="share-icon">⧉</span><span id="share-label">SHARE HUB</span></button>
+    </header>
+    <section class="hero" aria-labelledby="profile-heading">
+      <div class="hero-side hero-side-left" aria-hidden="true"><span>RGB_LINK // 001</span><span class="vertical-rule"></span><span>PHILIPPINES</span></div>
+      <div class="profile-card">
+        <div class="card-topline"><span>◉ &nbsp;PLAYER PROFILE</span><span>V. 01.0</span></div>
+        <div class="portrait-wrap"><div class="portrait-ring portrait-ring-one"></div><div class="portrait-ring portrait-ring-two"></div><div class="portrait-frame"><img src="public/marco-profile.jpeg" alt="Marco Valentino Caga-anan by an airplane window" /><div class="portrait-glitch" aria-hidden="true"></div></div><div class="level-badge"><span>LVL</span><strong>01</strong></div></div>
+        <div class="profile-label"><span>PLAYER_001</span><span class="label-line"></span><span>ONLINE</span></div>
+        <h1 id="profile-heading"><span>Marco</span><span class="name-accent">Valentino</span><span>Caga-anan</span></h1>
+        <p class="profile-description">✦ &nbsp;Digital presence unlocked. Find all my current socials below.</p>
+      </div>
+      <div class="links-panel">
+        <div class="panel-heading"><div><p class="eyebrow">SELECT A CHANNEL</p><h2>Drop in.</h2></div><span class="heading-icon">⌁</span></div>
+        <nav class="social-links" aria-label="Marco's social profiles">
+          <a class="social-link social-link-blue" href="https://facebook.com/marco.valentino.caga.anan" target="_blank" rel="noreferrer"><span class="social-index">01</span><span class="social-icon">f</span><span class="social-copy"><strong>Facebook</strong><span>marco.valentino.caga.anan</span></span><span class="social-note">Connect</span><span class="social-arrow">↗</span></a>
+          <a class="social-link social-link-pink" href="https://www.tiktok.com/@mavrkz0" target="_blank" rel="noreferrer"><span class="social-index">02</span><span class="social-icon">♪</span><span class="social-copy"><strong>TikTok</strong><span>@mavrkz0</span></span><span class="social-note">Watch</span><span class="social-arrow">↗</span></a>
+          <a class="social-link social-link-orange" href="https://www.instagram.com/mar.codes" target="_blank" rel="noreferrer"><span class="social-index">03</span><span class="social-icon">◎</span><span class="social-copy"><strong>Instagram</strong><span>@mar.codes</span></span><span class="social-note">Follow</span><span class="social-arrow">↗</span></a>
+        </nav>
+        <div class="panel-footer"><span>03 CHANNELS ACTIVE</span><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span>GG, SEE YOU THERE</span></div>
+      </div>
+      <div class="hero-side hero-side-right" aria-hidden="true"><span>NO LAG</span><span class="right-cross">+</span><span>STAY CONNECTED</span></div>
+    </section>
+    <footer class="footer"><span>© 2026 MARCO VALENTINO CAGA-ANAN</span><span class="footer-center">SOCIAL LINKER HUB <span>///</span> PUBLIC ACCESS</span><span>MADE FOR THE NEXT LEVEL <span class="footer-spark">✦</span></span></footer>
+  </main>
+  <script>
+    const button = document.getElementById('share-button');
+    const label = document.getElementById('share-label');
+    const icon = document.getElementById('share-icon');
+    button.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(window.location.href); label.textContent = 'COPIED'; icon.textContent = '✓'; setTimeout(() => { label.textContent = 'SHARE HUB'; icon.textContent = '⧉'; }, 1800); } catch (_) { label.textContent = 'COPY URL'; }
+    });
+  </script>
+</body>
 </html>
