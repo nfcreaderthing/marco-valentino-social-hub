@@ -85,7 +85,7 @@ function App() {
             <div className="portrait-ring portrait-ring-one" />
             <div className="portrait-ring portrait-ring-two" />
             <div className="portrait-frame">
-              <img src="/marco-profile.jpeg" alt="Marco Valentino Caga-anan by an airplane window" />
+              <img src="marco-profile.jpeg" alt="Marco Valentino Caga-anan by an airplane window" />
               <div className="portrait-glitch" aria-hidden="true" />
             </div>
             <div className="level-badge"><span>LVL</span><strong>01</strong></div>
